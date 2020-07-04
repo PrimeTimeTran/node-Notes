@@ -40,25 +40,26 @@ const readNote = title => {
   }
 };
 
-const list = arg => {
+const list = () => {
   const notes = loadNotes();
   console.table(notes);
 };
 
 const saveNotes = notes => {
-  const dataJSON = JSON.stringify(notes);
-  fs.writeFileSync("./notes.json", dataJSON);
+  const json = JSON.stringify(notes);
+  fs.writeFileSync("./notes.json", json);
 };
 
 const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
-    const dataJSON = dataBuffer.toString();
-    return JSON.parse(dataJSON);
+    const json = dataBuffer.toString();
+    return JSON.parse(json);
   } catch (error) {
     return [];
   }
 };
+
 
 module.exports = {
   list,
